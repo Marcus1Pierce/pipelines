@@ -15,7 +15,6 @@ class Pipeline:
 
         GOOGLE_API_KEY: str = ""
         USE_PERMISSIVE_SAFETY: bool = Field(default=False)
-        ALLOWED_MODELS: str = Field(default="Gemini 1.5 Flash,Gemini 1.5 Pro")
 
     def __init__(self):
         self.type = "manifold"
@@ -25,7 +24,7 @@ class Pipeline:
         self.valves = self.Valves(**{
             "GOOGLE_API_KEY": os.getenv("GOOGLE_API_KEY", ""),
             "USE_PERMISSIVE_SAFETY": False,
-            "ALLOWED_MODELS": os.getenv("ALLOWED_MODELS", "Gemini 1.5 Flash,Gemini 1.5 Pro")
+            "ALLOWED_MODELS": os.getenv("ALLOWED_MODELS", "")
         })
         self.pipelines = []
 
