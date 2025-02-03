@@ -51,7 +51,7 @@ class Pipeline:
         if self.valves.GOOGLE_API_KEY:
             try:
                 models = genai.list_models()
-                allowed_models = [m.strip() for m in self.valves.ALLOWED_MODELS.split(",")]
+                allowed_models = [m.strip() for m in self.valves.ALLOWED_MODELS.split(",") if m.strip()]
 
                 self.pipelines = [
                     {
@@ -61,7 +61,7 @@ class Pipeline:
                     for model in models
                     if "generateContent" in model.supported_generation_methods
                     if model.name[:7] == "models/"
-                    if model.display_name in allowed_models
+                    if not allowed_models or model.display_name in allowed_models
                 ]
             except Exception:
                 self.pipelines = [
