@@ -15,6 +15,7 @@ class Pipeline:
 
         GOOGLE_API_KEY: str = ""
         USE_PERMISSIVE_SAFETY: bool = Field(default=False)
+        ALLOWED_MODELS: str = Field(default="")
 
     def __init__(self):
         self.type = "manifold"
